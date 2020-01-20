@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pure React</title>
+</head>
+<body>
+
+    <!-- The <div> that our React application will render in -->
+    <div id="root">React not Rendered</div>
+
+    <!-- Brings in the React lib and ReactDOM lib -->
+
+    <!-- React is the API/engine.  It can be used for things other than the web such as native mobile development. -->
+    <script src="https://unpkg.com/react@16.8.6/umd/react.development.js"></script>
+
+    <!-- ReactDom is a special package that renders views for the web. -->
+    <script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js"></script>
+
+    <!-- Custom script-->    
+    <script>
+
+        /*
+
+        // Our functional component that returns our components HTML
+        const App = () => {
+
+            // The concepts of how a component returns the HTML is the same.
+
+            // We are doing the vanilla JavaScript way so instead of using JSX
+            // we are using .createElement() method.
+
+            // This method is what allows us to create elements in React behind the sense in the frame work.
+
+            // As you can see .createElement() is a method from the React lib.
+
+            // .createElement() takes in 3 arguments.
+
+            // 1st argument is the type of element you wish to create.
+
+            // 2nd argument is an object that will take in any number of properties. The 
+            // properties and values passed in can be attribues such as class, id or props.
+
+            // 3rd argument is the childnode if any. In this case we setting raw text (becomes a text  node)
+            // on our newly created <div>
+            
+            // We then use return to return our created element just like we did in our frame work when
+            // we used functional components. 
+
+            // To sum it up we are creating <div> with no attributes or props and attaching text to the <div>
+
+            // Note: The third option for .createElement() is optional. 
+
+                React.createElement(
+                    type,
+                    [props],
+                    [...children]
+                )
+
+                  
+
+            // https://reactjs.org/docs/react-api.html#createelement
+
+            return React.createElement(
+                'div', 
+                {}, 
+                'REACT HAS RENDERED!!!!');
+        };
+
+        */
+
+        // Our functional component that will recieve props from our App component.
+        // Since we have access to props we can pass in the props to fill out our <h1> and <p>.
+        // Rule of thumb components must return a single element.
+        // If you want more than one element to render you will need to wrap all elements in a surrounding element.
+        // In the code below we are creating a <h1> and <p> inside of a single <div> 
+        const Person = props => {
+            return React.createElement('div', {}, [
+                React.createElement('h1', {}, props.name),
+                React.createElement('p', {}, props.occupation)
+            ]);
+        }
+
+        // App is now our class component that extends from Component inside of the React lib.
+        class App extends React.Component {
+
+            render() {
+
+                // Returning a single <div> that will contain a text node, and two of our Person components
+                return React.createElement('div', {}, [
+                'REACT HAS RENDERED!!!!',
+
+                // 1st argument will be our element in this case our Person component.
+                // 2nd argument will be our props that we will pass into our Person component.
+                // We left the 3rd argument off this time because we do not need it.
+                React.createElement(Person, { name: 'Chris Redfield', occupation: 'Town drunk'}),
+                React.createElement(Person, { name: 'Leon Zipp Kennedy', occupation: 'Real ladies man'})
+                ]);
+            };
+           
+
+            
+        }
+
+
+        // ReactDOM.render(element, container[, callback])
+
+        // Render a React element into the DOM in the supplied container and return a reference to the component (or returns null for stateless components).
+
+        // If the React element was previously rendered into container, this will perform an update on it and only mutate the DOM as necessary to reflect the latest React element.
+
+        // If the optional callback is provided, it will be executed after the component is rendered or updated.
+
+        // This is just like ReactDOM.render(<App />, document.getElementById('root')); inside of index.js from the frame work.
+
+        // We are basically rendering our App component into the <div> that has the id of root.
+
+        // https://reactjs.org/docs/react-dom.html#render
+
+        ReactDOM.render(
+            React.createElement(App), 
+            document.getElementById('root')
+        );
+
+        // This is an example of coding a React app in raw JavaScript.
+        // As you can see JSX makes things much more easier.
+    
+    </script>
+</body>
+</html>
